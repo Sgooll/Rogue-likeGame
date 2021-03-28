@@ -18,6 +18,9 @@ EBTNodeResult::Type UChasePlayer::ExecuteTask(UBehaviorTreeComponent& owner_comp
 	FVector const player_location = cont->get_blackboard()->GetValueAsVector(bb_keys::target_location);
 
 	UAIBlueprintHelperLibrary::SimpleMoveToLocation(cont, player_location);
+=======
+	if (Isdead == false)
+		UAIBlueprintHelperLibrary::SimpleMoveToLocation(cont, player_location);
 
 	FinishLatentTask(owner_comp, EBTNodeResult::Succeeded);
 	return EBTNodeResult::Succeeded;

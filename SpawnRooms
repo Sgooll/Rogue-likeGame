@@ -1,0 +1,20 @@
+//Исполнительный файл
+void APlaceRoom::BeginPlay()
+{
+	Super::BeginPlay();
+		for (int i = 0; i < 10; i++) {
+			const FVector Location = GetActorLocation();
+			const FRotator Rotation = GetActorRotation();
+			GetWorld()->SpawnActor<AActor>(ActorToSpawn, Location, Rotation);
+			FVector NewLocation = GetActorLocation();
+			NewLocation.Y += 2425.0f;
+			SetActorLocation(NewLocation);
+		}
+
+}
+
+//Заголовочный файл
+	virtual void BeginPlay() override;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AActor> ActorToSpawn;

@@ -1,0 +1,63 @@
+void APlaceRoom::BeginPlay()
+{
+	Super::BeginPlay();
+	bool x = false, y = false, mx = false, my = false;
+		for (int i = 0; i < 10; i++) {
+			const FVector Location = GetActorLocation();
+			const FRotator Rotation = GetActorRotation();
+			//GetWorld()->SpawnActor<AActor>(ActorToSpawn, Location, Rotation);
+			FVector NewLocation = GetActorLocation();
+			int Con = rand() % 3;
+			if (my == true && Con == 3)
+			{
+				Con = rand() % 3;
+				i -= 1;
+				continue;
+			}
+			if (mx == true && Con == 2)
+			{
+				Con = rand() % 3;
+				i -= 1;
+				continue;
+			}
+			if (x == true && Con == 1)
+			{
+				Con = rand() % 3;
+				i -= 1;
+				continue;
+			}
+			if (y == true && Con == 0)
+			{
+				Con = rand() % 3;
+				i -= 1;
+				continue;
+			}
+			if ((Con == 0) && (y == false)) {
+				NewLocation.Y += 2425.0f;
+				SetActorLocation(NewLocation);
+				my = true;
+				x = false, y = false, mx = false;
+				GetWorld()->SpawnActor<AActor>(ActorToSpawn, Location, Rotation);
+			}
+			if ((Con == 1) && (x == false)) {
+				NewLocation.X += 2425.0f;
+				SetActorLocation(NewLocation);
+				mx = true;
+				x = false, y = false, my = false;
+				GetWorld()->SpawnActor<AActor>(ActorToSpawn, Location, Rotation);
+			}
+			if ((Con == 2) && (mx == false)) {
+				NewLocation.X -= 2425.0f;
+				SetActorLocation(NewLocation);
+				x = true;
+				mx = false, y = false, mx = false;
+				GetWorld()->SpawnActor<AActor>(ActorToSpawn, Location, Rotation);
+			}
+			if ((Con == 3) && (my == false)) {
+				NewLocation.Y -= 2425.0f;
+				SetActorLocation(NewLocation);
+				y = true;
+				x = false, my = false, mx = false;
+				GetWorld()->SpawnActor<AActor>(ActorToSpawn, Location, Rotation);
+			}
+		}
