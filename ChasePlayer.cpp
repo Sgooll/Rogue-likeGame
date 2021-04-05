@@ -16,6 +16,9 @@ EBTNodeResult::Type UChasePlayer::ExecuteTask(UBehaviorTreeComponent& owner_comp
 {
 	AMeleeAIController* const cont = Cast<AMeleeAIController>(owner_comp.GetAIOwner());
 	FVector const player_location = cont->get_blackboard()->GetValueAsVector(bb_keys::target_location);
+
+	UAIBlueprintHelperLibrary::SimpleMoveToLocation(cont, player_location);
+=======
 	if (Isdead == false)
 		UAIBlueprintHelperLibrary::SimpleMoveToLocation(cont, player_location);
 
